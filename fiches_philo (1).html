@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiches de Révision – Philosophie Bac</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root {
+    --purple: #6B4FA0;
+    --purple-light: #EDE8F5;
+    --purple-mid: #9B7DC8;
+    --red: #E05252;
+    --red-light: #FDF0F0;
+    --green: #3A9E6A;
+    --green-light: #EAF6EF;
+    --blue: #3A7ABE;
+    --blue-light: #EAF1FB;
+    --gray: #F4F4F6;
+    --dark: #1A1A2E;
+    --text: #2D2D3A;
+    --muted: #7A7A95;
+    --border: #E2DFF0;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F0EDF8;
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 32px 20px 28px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 5vw, 36px);
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+  }
+
+  header p {
+    color: #B0A8C8;
+    font-size: 14px;
+  }
+
+  .nav-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-btn {
+    background: var(--gray);
+    border: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    background: var(--purple);
+    color: white;
+  }
+
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+
+  .notion-header {
+    text-align: center;
+    padding: 28px 20px 20px;
+    background: white;
+    border-radius: 16px 16px 0 0;
+    border-bottom: 3px solid var(--purple);
+    margin-top: 40px;
+  }
+
+  .notion-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .notion-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 4vw, 30px);
+    color: var(--purple);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .notion-header .subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 8px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+  }
+
+  .card-body {
+    background: white;
+    border-radius: 0 0 16px 16px;
+    padding: 0 0 20px;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 20px rgba(107, 79, 160, 0.08);
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  @media (max-width: 640px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  .section {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--purple);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .section-title .icon { font-size: 14px; }
+
+  /* Definitions */
+  .def-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+
+  .def-term {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--purple);
+    min-width: 120px;
+    padding-top: 2px;
+  }
+
+  .def-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text);
+    flex: 1;
+  }
+
+  /* Authors */
+  .author-card {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--purple-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--dark);
+  }
+
+  .author-period {
+    font-size: 11px;
+    color: var(--purple-mid);
+    margin-bottom: 3px;
+  }
+
+  .author-quote {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Distinctions */
+  .distinction {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .distinction-term {
+    background: var(--purple-light);
+    color: var(--purple);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .distinction-arrow {
+    color: var(--purple-mid);
+    font-size: 16px;
+  }
+
+  .distinction-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+    margin-left: 4px;
+  }
+
+  /* Sujets */
+  .sujet {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+
+  .sujet-icon {
+    color: var(--purple-mid);
+    font-size: 15px;
+    padding-top: 1px;
+  }
+
+  .sujet-text {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* Pièges */
+  .piege {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+    background: var(--red-light);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .piege-icon { font-size: 14px; }
+  .piege-text { font-size: 12px; line-height: 1.45; color: #8B3535; }
+
+  /* Keywords */
+  .keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 16px 20px 4px;
+  }
+
+  .keyword {
+    background: var(--purple-light);
+    color: var(--purple);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  .notion-section {
+    display: none;
+  }
+
+  .notion-section.visible {
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📚 Fiches de Révision — Philosophie</h1>
+  <p>Baccalauréat · 16 notions essentielles</p>
+</header>
+
+<div class="nav-bar" id="navBar"></div>
+
+<div class="main" id="main"></div>
+
+<script>
+const notions = [
+  {
+    id: "liberte",
+    titre: "La Liberté",
+    emoji: "🔓",
+    subtitle: "La liberté est la capacité d'agir selon sa propre volonté, sans contrainte extérieure ou intérieure. C'est l'une des notions les plus débattues en philosophie.",
+    definitions: [
+      { terme: "Liberté d'action (négative)", def: "Absence de contraintes extérieures. Je suis libre si rien ne m'empêche d'agir. Ex : la liberté civile garantie par la loi." },
+      { terme: "Libre arbitre", def: "Capacité de choisir entre plusieurs possibilités, indépendamment de toute cause. La volonté échappe au déterminisme." },
+      { terme: "Liberté intérieure (positive)", def: "Maîtrise de soi, domination de ses passions et désirs. Être libre, c'est obéir à sa raison plutôt qu'à ses impulsions." },
+      { terme: "Déterminisme", def: "Doctrine selon laquelle tout événement, y compris les actions humaines, est entièrement causé par des facteurs antérieurs." },
+      { terme: "Autonomie", def: "Au sens de Kant, se donner sa propre loi morale par la raison. S'oppose à l'hétéronomie (obéir à une loi extérieure)." },
+    ],
+    auteurs: [
+      { nom: "Descartes", periode: "XVIIe s.", emoji: "🧐", idee: "Le libre arbitre est infini chez l'homme : on peut toujours dire oui ou non à nos désirs." },
+      { nom: "Spinoza", periode: "XVIIe s.", emoji: "🔍", idee: "Le libre arbitre est une illusion. Nous ignorons les causes qui nous font agir. La vraie liberté est de comprendre la nécessité." },
+      { nom: "Sartre", periode: "XXe s.", emoji: "✍️", idee: "\"L'existence précède l'essence\" : l'homme est condamné à être libre. Nous sommes toujours responsables de nos choix." },
+      { nom: "Kant", periode: "XVIIIe s.", emoji: "📐", idee: "La liberté est obéissance à la loi morale que je me donne moi-même (autonomie). Elle est condition de la morale." },
+      { nom: "Rousseau", periode: "XVIIIe s.", emoji: "🌿", idee: "L'homme naît libre mais est partout dans les fers. La liberté civile, fondée sur le contrat social, vaut plus que la liberté naturelle." },
+    ],
+    distinctions: [
+      { a: "Liberté", b: "Licence", desc: "La liberté n'est pas faire tout ce qu'on veut (licence) mais agir selon la raison et la loi morale." },
+      { a: "Libre arbitre", b: "Déterminisme", desc: "Y a-t-il une compatibilité entre les deux ? Les compatibilistes (Hume) pensent que oui." },
+      { a: "Liberté", b: "Indépendance", desc: "Être indépendant (sans contrainte extérieure) ne signifie pas être libre intérieurement." },
+    ],
+    sujets: ["La liberté est-elle une illusion ?", "Peut-on être libre sans les autres ?", "Sommes-nous responsables de ce que nous sommes ?", "La liberté est-elle compatible avec l'existence de lois ?", "Peut-on désirer être libre ?"],
+    pieges: ["Ne pas confondre liberté et arbitraire (faire n'importe quoi).", "Éviter de réduire la liberté à la seule liberté politique.", "Ne pas oublier que Spinoza ne nie pas toute liberté : il en propose une conception différente."],
+    mots: ["libre arbitre", "déterminisme", "autonomie", "contrainte", "responsabilité", "volonté", "nécessité", "aliénation"],
+  },
+  {
+    id: "verite",
+    titre: "La Vérité",
+    emoji: "💡",
+    subtitle: "La vérité est ce qui correspond au réel. Mais peut-on vraiment l'atteindre, et est-il toujours bon de la dire ?",
+    definitions: [
+      { terme: "Vérité", def: "Adéquation entre un énoncé et la réalité. Un jugement est vrai quand il correspond au réel." },
+      { terme: "Opinion (doxa)", def: "Croyance non démontrée, subjective et souvent non fondée. S'oppose au savoir." },
+      { terme: "Vérité formelle", def: "Vérité logique ou mathématique, indépendante de l'expérience (ex : 2+2=4)." },
+      { terme: "Vérité empirique", def: "Vérité fondée sur l'expérience et l'observation du monde réel." },
+      { terme: "Erreur / Illusion", def: "L'erreur est involontaire (on se trompe). L'illusion est une fausse croyance à laquelle on tient malgré tout." },
+    ],
+    auteurs: [
+      { nom: "Platon", periode: "IVe s. av. J.-C.", emoji: "🏛️", idee: "Allégorie de la Caverne : il faut quitter les apparences sensibles pour accéder à la vérité des Idées, grâce à la raison." },
+      { nom: "Descartes", periode: "XVIIe s.", emoji: "🧐", idee: "Le doute méthodique : douter de tout pour trouver une vérité indubitable. \"Je pense, donc je suis.\"" },
+      { nom: "Nietzsche", periode: "XIXe s.", emoji: "⚡", idee: "Il n'y a pas de vérités absolues, seulement des interprétations. La vérité est une construction humaine au service de la vie." },
+      { nom: "Aristote", periode: "IVe s. av. J.-C.", emoji: "📚", idee: "La vérité est adéquation entre la pensée et la réalité (correspondance). La logique est l'outil pour l'atteindre." },
+    ],
+    distinctions: [
+      { a: "Vérité", b: "Opinion", desc: "La vérité est universelle et démontrée ; l'opinion est subjective et non fondée." },
+      { a: "Croire", b: "Savoir", desc: "Croire = adhérer sans preuve. Savoir = avoir une justification rationnelle." },
+      { a: "Vérité", b: "Certitude", desc: "Une certitude est subjective (je suis certain). Une vérité doit être objectivement démontrée." },
+    ],
+    sujets: ["Peut-on atteindre la vérité ?", "Toute vérité est-elle bonne à dire ?", "Y a-t-il des vérités relatives ?", "Le doute est-il un obstacle à la vérité ?"],
+    pieges: ["Ne pas confondre vérité et certitude subjective.", "Éviter de dire que 'tout est vrai' (relativisme naïf).", "Ne pas oublier que Nietzsche ne nie pas la vérité, il critique l'idée d'une vérité absolue et unique."],
+    mots: ["vérité", "opinion", "démonstration", "doute", "certitude", "évidence", "relativisme", "objectivité"],
+  },
+  {
+    id: "science",
+    titre: "La Science",
+    emoji: "🔬",
+    subtitle: "La science est une connaissance fondée sur des preuves, des expériences et des théories vérifiables. Elle vise l'explication rationnelle du monde.",
+    definitions: [
+      { terme: "Science", def: "Ensemble de connaissances fondées sur des observations, des expériences et des raisonnements rigoureux visant à expliquer le réel." },
+      { terme: "Expérience", def: "Mise à l'épreuve d'une hypothèse par l'observation ou l'expérimentation contrôlée." },
+      { terme: "Théorie", def: "Ensemble cohérent d'hypothèses et de lois qui explique un phénomène et permet de le prédire." },
+      { terme: "Réfutabilité (Popper)", def: "Une théorie est scientifique si elle peut être potentiellement réfutée par l'expérience. Critère de démarcation." },
+      { terme: "Rupture épistémologique", def: "Pour Bachelard, la science progresse en rompant avec les obstacles du sens commun et des préjugés." },
+    ],
+    auteurs: [
+      { nom: "Galilée", periode: "XVIe–XVIIe s.", emoji: "🌌", idee: "Le livre de la nature est écrit en langage mathématique. Il fonde la méthode expérimentale moderne." },
+      { nom: "Bachelard", periode: "XXe s.", emoji: "🏗️", idee: "La science se construit contre l'opinion et les obstacles épistémologiques. Tout progrès implique une rupture." },
+      { nom: "Popper", periode: "XXe s.", emoji: "🎯", idee: "Une théorie n'est scientifique que si elle est réfutable. La science avance par essais et erreurs." },
+    ],
+    distinctions: [
+      { a: "Science", b: "Opinion", desc: "La science repose sur des preuves vérifiables ; l'opinion est subjective." },
+      { a: "Science", b: "Croyance", desc: "La croyance n'exige pas de démonstration ; la science l'exige." },
+      { a: "Expliquer", b: "Comprendre", desc: "Les sciences naturelles expliquent (causes) ; les sciences humaines cherchent aussi à comprendre (sens)." },
+    ],
+    sujets: ["La science dit-elle la vérité ?", "Y a-t-il des limites à la science ?", "La science peut-elle tout expliquer ?", "Science et croyance sont-elles compatibles ?"],
+    pieges: ["Ne pas confondre science et technologie.", "Éviter de penser que la science donne des vérités définitives : elle est provisoire et révisable.", "Ne pas négliger que la science a des limites éthiques et techniques."],
+    mots: ["réfutabilité", "expérience", "hypothèse", "objectivité", "méthode", "progrès", "paradigme", "épistémologie"],
+  },
+  {
+    id: "technique",
+    titre: "La Technique",
+    emoji: "⚙️",
+    subtitle: "La technique désigne l'ensemble des savoir-faire humains permettant de transformer la nature. Elle pose la question de notre rapport au monde et à la liberté.",
+    definitions: [
+      { terme: "Technique", def: "Ensemble de procédés et de savoir-faire permettant de transformer la nature pour répondre à des besoins humains." },
+      { terme: "Outil", def: "Instrument prolongeant le corps humain, sous le contrôle direct de l'utilisateur (ex : marteau)." },
+      { terme: "Machine", def: "Dispositif automatisé qui s'autonomise par rapport à l'homme ; peut le remplacer." },
+      { terme: "Progrès technique", def: "Amélioration continue des moyens techniques. Soulève des questions sur ses finalités et ses dangers." },
+    ],
+    auteurs: [
+      { nom: "Descartes", periode: "XVIIe s.", emoji: "🧐", idee: "La technique doit rendre l'homme \"maître et possesseur de la nature\". Vision optimiste et utilitariste." },
+      { nom: "Heidegger", periode: "XXe s.", emoji: "⚠️", idee: "La technique moderne menace l'être en réduisant tout à une \"disponibilité\" (Gestell). Elle nous éloigne du rapport authentique au monde." },
+      { nom: "Bergson", periode: "XIXe–XXe s.", emoji: "🧠", idee: "L'homme est un \"homo faber\" : il se définit par sa capacité à fabriquer des outils. La technique est constitutive de l'humanité." },
+      { nom: "Marx", periode: "XIXe s.", emoji: "⚒️", idee: "La technique peut libérer l'homme du travail aliénant, mais dans le capitalisme elle devient un instrument d'exploitation." },
+    ],
+    distinctions: [
+      { a: "Nature", b: "Technique", desc: "La nature existe sans l'homme ; la technique est toujours une transformation intentionnelle du naturel." },
+      { a: "Moyen", b: "Fin", desc: "La technique est un moyen : il faut réfléchir aux fins qu'elle sert pour l'évaluer moralement." },
+      { a: "Outil", b: "Machine", desc: "L'outil est sous contrôle humain ; la machine peut fonctionner de façon autonome." },
+    ],
+    sujets: ["La technique nous rend-elle libres ?", "Faut-il craindre le progrès technique ?", "L'homme est-il défini par ses techniques ?", "La technique a-t-elle une fin ?"],
+    pieges: ["Ne pas assimiler technique et science : la technique existait avant la science moderne.", "Éviter le techno-optimisme naïf comme le catastrophisme systématique.", "La technique n'est pas neutre : elle porte des valeurs et des effets."],
+    mots: ["homo faber", "outil", "machine", "progrès", "aliénation", "Gestell", "artifice", "automatisation"],
+  },
+  {
+    id: "art",
+    titre: "L'Art",
+    emoji: "🎨",
+    subtitle: "L'art est une création humaine qui vise à produire du beau ou de l'émotion, au-delà de toute utilité. Il interroge nos critères du beau et la valeur de l'œuvre.",
+    definitions: [
+      { terme: "Art", def: "Création humaine intentionnelle qui vise à produire une expérience esthétique (beauté, émotion, réflexion)." },
+      { terme: "Beauté", def: "Qualité d'un objet qui procure un plaisir esthétique. Peut être objective (Platon) ou subjective (Kant)." },
+      { terme: "Œuvre d'art", def: "Production artistique unique, intentionnelle, qui fait l'objet d'une expérience esthétique et d'une interprétation." },
+      { terme: "Mimèsis", def: "Imitation du réel (concept de Platon et Aristote). L'art imite-t-il ou crée-t-il quelque chose de nouveau ?" },
+      { terme: "Génie", def: "Pour Kant, le génie est le talent naturel qui donne des règles à l'art. L'artiste de génie crée sans suivre de règles préétablies." },
+    ],
+    auteurs: [
+      { nom: "Platon", periode: "IVe s. av. J.-C.", emoji: "🏛️", idee: "L'art est imitation d'imitation (copie du monde sensible qui est déjà copie des Idées). Méfiance envers les artistes dans La République." },
+      { nom: "Kant", periode: "XVIIIe s.", emoji: "📐", idee: "Le jugement de goût est universel sans concept. Le beau procure un plaisir désintéressé. Le sublime dépasse nos facultés." },
+      { nom: "Hegel", periode: "XIXe s.", emoji: "🌀", idee: "L'art est une manifestation sensible de l'Idée. Il exprime l'Esprit absolu à travers des formes sensibles." },
+      { nom: "Nietzsche", periode: "XIXe s.", emoji: "⚡", idee: "L'art est la grande stimulation de la vie. Il permet d'affirmer l'existence même dans sa dimension tragique (Dionysos vs Apollon)." },
+    ],
+    distinctions: [
+      { a: "Art", b: "Technique", desc: "La technique produit selon des règles ; l'art implique une création originale qui peut transgresser les règles." },
+      { a: "Beau", b: "Utile", desc: "La beauté esthétique est sans utilité pratique (Kant : plaisir désintéressé)." },
+      { a: "Beau", b: "Sublime", desc: "Le beau plaît ; le sublime déborde nos facultés et provoque une émotion mêlée d'effroi." },
+    ],
+    sujets: ["L'art sert-il à quelque chose ?", "Le beau est-il subjectif ?", "L'art doit-il imiter la réalité ?", "Peut-on définir l'art ?"],
+    pieges: ["Ne pas réduire l'art à ce qui est beau : l'art contemporain peut être délibérément laid.", "Éviter de dire que le goût est purement subjectif : Kant pense qu'il prétend à l'universalité.", "Ne pas confondre art et artisanat."],
+    mots: ["esthétique", "mimèsis", "génie", "sublime", "goût", "œuvre", "beauté", "interprétation"],
+  },
+  {
+    id: "travail",
+    titre: "Le Travail",
+    emoji: "🏗️",
+    subtitle: "Le travail est une activité de transformation du monde. Il définit l'homme, structure la société, mais peut aussi être source d'aliénation.",
+    definitions: [
+      { terme: "Travail", def: "Activité productive par laquelle l'homme transforme la nature et crée de la valeur. Implique effort et intentionnalité." },
+      { terme: "Aliénation", def: "Pour Marx, condition du travailleur qui ne se reconnaît pas dans son travail et se voit dépossédé du fruit de son activité." },
+      { terme: "Labour / Work / Action", def: "Distinction d'Arendt : Labour (survie biologique) / Work (fabrication d'un monde durable) / Action (vie politique)." },
+      { terme: "Loisir", def: "Temps libre de toute contrainte productive. Aristote y voit la condition de la vie bonne (scholè)." },
+    ],
+    auteurs: [
+      { nom: "Marx", periode: "XIXe s.", emoji: "⚒️", idee: "Le travail aliéné prive l'homme de lui-même. Dans le capitalisme, le travailleur est séparé de son produit, de son activité et de son espèce." },
+      { nom: "Hegel", periode: "XIXe s.", emoji: "🌀", idee: "Le travail est une dialectique : en transformant la nature, l'homme se transforme lui-même et prend conscience de lui-même (maître/esclave)." },
+      { nom: "Arendt", periode: "XXe s.", emoji: "📖", idee: "Distinction entre labour (cycle biologique) et work (création d'un monde durable). La modernité valorise trop le labour au détriment de l'action politique." },
+    ],
+    distinctions: [
+      { a: "Travail", b: "Loisir", desc: "Le travail implique une contrainte et une finalité extérieure ; le loisir est activité libre pour soi-même." },
+      { a: "Travail subi", b: "Travail choisi", desc: "Le travail peut être contrainte subie (labeur) ou épanouissement (vocation, passion)." },
+      { a: "Valeur d'usage", b: "Valeur d'échange", desc: "Marx : ce qu'un objet vaut pour l'usage vs ce qu'il vaut sur le marché." },
+    ],
+    sujets: ["Le travail libère-t-il ?", "Peut-on aimer travailler ?", "Avons-nous le droit de ne pas travailler ?", "Le travail est-il une valeur ?"],
+    pieges: ["Ne pas réduire le travail à la seule dimension économique.", "Éviter de confondre travail et emploi : tout travail n'est pas rémunéré.", "Ne pas idéaliser le loisir : sans travail, le loisir peut perdre son sens."],
+    mots: ["aliénation", "labour", "work", "action", "exploitation", "valeur", "vocation", "productivité"],
+  },
+  {
+    id: "conscience",
+    titre: "La Conscience",
+    emoji: "🧠",
+    subtitle: "La conscience est la capacité à savoir que l'on existe, à se rapporter à soi-même et au monde. Elle pose la question de l'identité et de la connaissance de soi.",
+    definitions: [
+      { terme: "Conscience immédiate", def: "Conscience spontanée du monde et de soi, sans réflexion : je vis, je ressens." },
+      { terme: "Conscience réflexive", def: "Retour de l'esprit sur lui-même : je sais que je pense, je m'observe moi-même." },
+      { terme: "Conscience morale", def: "Capacité à distinguer le bien du mal, à évaluer ses propres actes sur le plan éthique." },
+      { terme: "Identité personnelle", def: "Ce qui fait que je suis moi à travers le temps : continuité de la conscience, mémoire, cohérence." },
+    ],
+    auteurs: [
+      { nom: "Descartes", periode: "XVIIe s.", emoji: "🧐", idee: "\"Cogito ergo sum\" : la conscience est le fondement de toute certitude. Je suis une chose qui pense (res cogitans)." },
+      { nom: "Freud", periode: "XIXe–XXe s.", emoji: "🛋️", idee: "Le \"moi\" n'est pas maître dans sa propre maison. La conscience est submergée par les forces inconscientes." },
+      { nom: "Sartre", periode: "XXe s.", emoji: "✍️", idee: "La conscience est néant (elle n'est rien de fixe) et liberté pure. Elle se définit par ses actes, non par une nature donnée." },
+      { nom: "Locke", periode: "XVIIe s.", emoji: "📜", idee: "L'identité personnelle est constituée par la mémoire et la continuité de la conscience, non par le corps ou l'âme." },
+    ],
+    distinctions: [
+      { a: "Conscient", b: "Inconscient", desc: "La conscience est ce dont on a connaissance ; l'inconscient échappe à notre contrôle direct." },
+      { a: "Homme", b: "Animal", desc: "La conscience réflexive (se savoir comme être pensant) serait propre à l'homme selon Descartes." },
+      { a: "Conscience", b: "Cerveau", desc: "Débat entre dualisme (Descartes) et matérialisme : la conscience est-elle réductible au cerveau ?" },
+    ],
+    sujets: ["Peut-on se connaître soi-même ?", "La conscience fait-elle notre identité ?", "Peut-on être conscient et se tromper sur soi ?", "La conscience nous sépare-t-elle des animaux ?"],
+    pieges: ["Ne pas confondre conscience et inconscient : ils coexistent.", "Éviter de penser que la conscience donne une connaissance parfaite de soi (Freud le conteste).", "Ne pas oublier la conscience morale comme dimension distincte."],
+    mots: ["cogito", "réflexivité", "identité", "mémoire", "introspection", "subjectivité", "ipséité", "présence à soi"],
+  },
+  {
+    id: "inconscient",
+    titre: "L'Inconscient",
+    emoji: "🌊",
+    subtitle: "L'inconscient désigne la partie cachée de l'esprit, hors de notre accès direct. Son existence remet en question notre maîtrise de nous-mêmes.",
+    definitions: [
+      { terme: "Inconscient (Freud)", def: "Système psychique contenant des désirs refoulés, des pulsions et des souvenirs inaccessibles à la conscience ordinaire." },
+      { terme: "Refoulement", def: "Mécanisme par lequel des désirs inacceptables sont chassés de la conscience et maintenus dans l'inconscient." },
+      { terme: "Pulsions (Ça)", def: "Forces psychiques primitives (plaisir, mort) qui cherchent à se satisfaire sans égard aux normes sociales." },
+      { terme: "Surmoi", def: "Instance psychique intériorisant les interdits sociaux et moraux. Censure les désirs du Ça." },
+    ],
+    auteurs: [
+      { nom: "Freud", periode: "XIXe–XXe s.", emoji: "🛋️", idee: "L'inconscient est le vrai moteur de nos actes. La psychanalyse permet d'en prendre conscience et de se libérer des symptômes." },
+      { nom: "Jung", periode: "XXe s.", emoji: "🌀", idee: "Il existe un inconscient collectif, partagé par l'humanité, peuplé d'archétypes (figures universelles : l'Ombre, l'Anima…)." },
+      { nom: "Sartre", periode: "XXe s.", emoji: "✍️", idee: "Critique de Freud : l'inconscient est une \"mauvaise foi\" (bad faith). On se cache à soi-même ce qu'on sait au fond." },
+    ],
+    distinctions: [
+      { a: "Conscient", b: "Inconscient", desc: "Ce dont on a conscience vs ce qui agit en nous à notre insu." },
+      { a: "Vouloir", b: "Désirer", desc: "Vouloir est conscient et raisonné ; désirer peut être inconscient et pulsionnel." },
+      { a: "Inconscient", b: "Subconscient", desc: "Freud préfère le terme inconscient (structure) ; le subconscient est souvent utilisé de manière vague." },
+    ],
+    sujets: ["Sommes-nous maîtres de nous-mêmes ?", "L'inconscient limite-t-il notre liberté ?", "Peut-on se connaître sans psychanalyse ?", "L'inconscient existe-t-il vraiment ?"],
+    pieges: ["Ne pas traiter l'inconscient comme une simple intuition ou pressentiment.", "Sartre ne nie pas l'inconscient naïvement : il propose une alternative philosophique.", "Ne pas réduire Freud à la sexualité : les pulsions incluent aussi Éros et Thanatos."],
+    mots: ["refoulement", "pulsions", "Ça / Moi / Surmoi", "psychanalyse", "symptôme", "rêve", "archétype", "mauvaise foi"],
+  },
+  {
+    id: "devoir",
+    titre: "Le Devoir",
+    emoji: "⚖️",
+    subtitle: "Le devoir est une obligation morale qui s'impose à nous. Il pose la question du fondement de la morale et de sa relation à la liberté.",
+    definitions: [
+      { terme: "Devoir", def: "Obligation morale inconditionnelle : ce que je dois faire, indépendamment de mes intérêts ou désirs." },
+      { terme: "Impératif catégorique", def: "Pour Kant, règle morale universelle et inconditionnelle. \"Agis de telle sorte que la maxime de ton action puisse être érigée en loi universelle.\"" },
+      { terme: "Impératif hypothétique", def: "Pour Kant, règle conditionnelle liée à un but : \"Si tu veux X, tu dois faire Y.\" N'a pas de valeur morale absolue." },
+      { terme: "Devoir moral vs légal", def: "Le devoir moral vient de la conscience ; le devoir légal vient de la loi. Ils peuvent coïncider ou s'opposer." },
+    ],
+    auteurs: [
+      { nom: "Kant", periode: "XVIIIe s.", emoji: "📐", idee: "Agis uniquement selon la maxime qui peut devenir une loi universelle. Le devoir est fondé sur la raison pure, pas sur les conséquences." },
+      { nom: "Rousseau", periode: "XVIIIe s.", emoji: "🌿", idee: "La loi morale vient de la volonté générale. Obéir à la loi qu'on s'est donnée collectivement, c'est être libre." },
+      { nom: "Aristote", periode: "IVe s. av. J.-C.", emoji: "📚", idee: "La morale vise la vie bonne (eudémonisme). Le devoir n'est pas abstrait mais lié à la vertu et au bonheur." },
+    ],
+    distinctions: [
+      { a: "Devoir", b: "Intérêt", desc: "Le devoir s'impose même contre notre intérêt personnel. Agir par devoir ≠ agir par intérêt." },
+      { a: "Morale", b: "Légalité", desc: "Une action peut être légale mais immorale (et vice versa). La loi et la morale ne coïncident pas toujours." },
+      { a: "Agir par devoir", b: "Agir conformément au devoir", desc: "Pour Kant, seul agir par devoir a une valeur morale. Agir conformément mais par intérêt n'en a pas." },
+    ],
+    sujets: ["Faut-il toujours faire son devoir ?", "Le devoir limite-t-il la liberté ?", "Peut-il y avoir un devoir de désobéir ?", "D'où vient l'obligation morale ?"],
+    pieges: ["Ne pas réduire le devoir à la simple obéissance à la loi.", "Kant ne dit pas qu'il faut être malheureux : le devoir n'exclut pas le bonheur, il le précède.", "Ne pas confondre déontologie (Kant) et conséquentialisme (les conséquences justifient-elles les actes ?)."],
+    mots: ["impératif catégorique", "autonomie", "maxime", "universalité", "obligation", "vertu", "déontologie", "dignité"],
+  },
+  {
+    id: "justice",
+    titre: "La Justice",
+    emoji: "🏛️",
+    subtitle: "La justice est le principe selon lequel chacun reçoit ce qui lui est dû. Elle articule droit, égalité et équité dans la société.",
+    definitions: [
+      { terme: "Justice commutative", def: "Égalité dans les échanges et les contrats : chacun doit recevoir l'équivalent de ce qu'il a donné." },
+      { terme: "Justice distributive", def: "Répartition des biens selon un critère (mérite, besoin, égalité). Aristote : rendre à chacun ce qui lui revient selon son rang." },
+      { terme: "Équité", def: "Traitement différencié pour parvenir à un résultat juste (tenir compte des inégalités de départ)." },
+      { terme: "Droit naturel", def: "Droits inhérents à tout être humain, indépendamment des lois positives (ex : droits de l'homme)." },
+    ],
+    auteurs: [
+      { nom: "Platon", periode: "IVe s. av. J.-C.", emoji: "🏛️", idee: "La justice est l'harmonie de l'âme et de la cité : chaque partie remplit sa fonction. La justice est la vertu cardinale." },
+      { nom: "Aristote", periode: "IVe s. av. J.-C.", emoji: "📚", idee: "La justice consiste à rendre à chacun ce qui lui revient. Distinction entre justice commutative et distributive." },
+      { nom: "Rawls", periode: "XXe s.", emoji: "🎲", idee: "\"Voile d'ignorance\" : une société juste est celle que l'on choisirait si l'on ignorait notre position sociale. Priorité aux plus défavorisés." },
+    ],
+    distinctions: [
+      { a: "Justice", b: "Vengeance", desc: "La justice est institutionnelle et impartiale ; la vengeance est personnelle et passionnelle." },
+      { a: "Égalité", b: "Équité", desc: "L'égalité donne la même chose à tous ; l'équité donne selon les besoins pour corriger les inégalités." },
+      { a: "Légalité", b: "Légitimité", desc: "Ce qui est légal (selon la loi) n'est pas toujours légitime (moralement juste)." },
+    ],
+    sujets: ["Une loi injuste doit-elle être respectée ?", "Qu'est-ce qu'une société juste ?", "La justice est-elle affaire d'égalité ou d'équité ?", "Justice et vengeance : quelle différence ?"],
+    pieges: ["Ne pas confondre justice et légalité : une loi peut être injuste.", "Ne pas réduire l'équité à l'égalité : elles ont des logiques différentes.", "Rawls ne défend pas le communisme : il reste dans le cadre d'une société libérale."],
+    mots: ["équité", "égalité", "droit naturel", "voile d'ignorance", "légitimité", "tribunal", "réparation", "contrat social"],
+  },
+  {
+    id: "etat",
+    titre: "L'État",
+    emoji: "🏟️",
+    subtitle: "L'État est la forme d'organisation politique qui détient le monopole de la force légitime. Il pose la question de l'obéissance, de la liberté et du contrat social.",
+    definitions: [
+      { terme: "État", def: "Institution politique souveraine qui exerce le pouvoir sur un territoire et une population définis. Détient le monopole de la contrainte légitime (Weber)." },
+      { terme: "Contrat social", def: "Théorie selon laquelle les individus ont consenti (implicitement ou explicitement) à déléguer une partie de leur liberté à l'État pour vivre en société." },
+      { terme: "Souveraineté", def: "Pouvoir suprême de l'État qui ne reconnaît aucune autorité supérieure. Peut être exercée par un monarque ou le peuple." },
+      { terme: "État de nature", def: "Hypothèse d'une humanité avant tout État. Pour Hobbes : guerre de tous contre tous. Pour Rousseau : bonheur naturel." },
+    ],
+    auteurs: [
+      { nom: "Hobbes", periode: "XVIIe s.", emoji: "⚔️", idee: "Sans État, la vie serait \"solitaire, misérable, dangereuse\". Les hommes cèdent leurs droits à un souverain absolu pour assurer la paix (Léviathan)." },
+      { nom: "Rousseau", periode: "XVIIIe s.", emoji: "🌿", idee: "Le contrat social institue une volonté générale. L'État légitime est celui où le peuple obéit à des lois qu'il s'est données lui-même." },
+      { nom: "Locke", periode: "XVIIe s.", emoji: "📜", idee: "L'État doit protéger les droits naturels (vie, liberté, propriété). S'il les viole, le peuple a le droit de résistance." },
+    ],
+    distinctions: [
+      { a: "État", b: "Société", desc: "La société est l'ensemble des liens humains ; l'État est l'institution politique qui les organise et les régule." },
+      { a: "Autorité", b: "Tyrannie", desc: "L'autorité est légitime et reconnue ; la tyrannie est un pouvoir illégitime fondé sur la force." },
+      { a: "Pouvoir", b: "Violence", desc: "Pour Arendt, le pouvoir repose sur le consentement ; la violence y recourt quand le pouvoir s'effondre." },
+    ],
+    sujets: ["Pourquoi obéir aux lois ?", "L'État protège-t-il la liberté ?", "Peut-on légitimement désobéir à l'État ?", "L'État est-il nécessaire ?"],
+    pieges: ["Ne pas confondre État et gouvernement : le gouvernement est provisoire, l'État est une structure durable.", "Hobbes n'est pas pour la tyrannie : l'absolutisme sert la paix, pas l'arbitraire.", "Rousseau ne veut pas supprimer l'État : il veut le rendre légitime."],
+    mots: ["souveraineté", "contrat social", "légitimité", "volonté générale", "État de nature", "Léviathan", "démocratie", "désobéissance civile"],
+  },
+  {
+    id: "bonheur",
+    titre: "Le Bonheur",
+    emoji: "☀️",
+    subtitle: "Le bonheur est la satisfaction durable de l'existence. Mais peut-on l'atteindre, et par quels moyens ?",
+    definitions: [
+      { terme: "Bonheur (eudémonisme)", def: "État de satisfaction et d'épanouissement durable. Pour Aristote, c'est la fin ultime de l'existence humaine." },
+      { terme: "Ataraxie", def: "Pour Épicure, absence de trouble de l'âme, paix intérieure résultant de la satisfaction des désirs naturels et nécessaires." },
+      { terme: "Aponie", def: "Pour Épicure, absence de souffrance corporelle. Condition du bonheur avec l'ataraxie." },
+      { terme: "Plaisir vs Bonheur", def: "Le plaisir est momentané et partiel ; le bonheur est durable et global. Le plaisir ne garantit pas le bonheur." },
+    ],
+    auteurs: [
+      { nom: "Épicure", periode: "IIIe s. av. J.-C.", emoji: "🌸", idee: "Le bonheur est ataraxie (paix de l'âme) + aponie (absence de douleur). Il faut distinguer désirs naturels nécessaires, naturels non nécessaires, et vains." },
+      { nom: "Aristote", periode: "IVe s. av. J.-C.", emoji: "📚", idee: "Le bonheur (eudémonia) est l'exercice de l'excellence (vertu) propre à l'homme : l'activité rationnelle. Ce n'est pas un état, c'est une activité." },
+      { nom: "Pascal", periode: "XVIIe s.", emoji: "✝️", idee: "L'homme cherche le bonheur mais ne peut l'atteindre ici-bas. Le divertissement masque le vide. Seul Dieu peut combler cet infini." },
+      { nom: "Kant", periode: "XVIIIe s.", emoji: "📐", idee: "Le bonheur n'est pas le but de la morale. On ne peut pas en faire un devoir car on ne sait pas avec certitude ce qui nous rend heureux." },
+    ],
+    distinctions: [
+      { a: "Bonheur", b: "Plaisir", desc: "Le plaisir est fugace et partiel ; le bonheur est un état global et durable." },
+      { a: "Désir", b: "Satisfaction", desc: "Le désir peut être infini (risque de frustration permanente). La sagesse consiste à bien choisir ses désirs." },
+      { a: "Bonheur", b: "Béatitude", desc: "La béatitude est le bonheur parfait, souvent associé à Dieu ou à l'au-delà. Le bonheur humain est imparfait et provisoire." },
+    ],
+    sujets: ["Le bonheur est-il accessible à tous ?", "Le bonheur dépend-il de nous ?", "Peut-on se rendre heureux ?", "Le bonheur est-il une fin en soi ?"],
+    pieges: ["Ne pas réduire Épicure au simple hédonisme : sa philosophie est austère et sélective.", "Kant n'est pas contre le bonheur : il dit simplement qu'on ne peut pas en faire un devoir.", "Ne pas confondre bonheur et satisfaction immédiate des désirs."],
+    mots: ["ataraxie", "aponie", "eudémonia", "plaisir", "vertu", "désir", "divertissement", "sagesse"],
+  },
+  {
+    id: "desir",
+    titre: "Le Désir",
+    emoji: "💫",
+    subtitle: "Le désir est un état de manque orienté vers un objet qu'on cherche à atteindre. Il est à la fois moteur de l'existence et source de souffrance potentielle.",
+    definitions: [
+      { terme: "Désir", def: "État de tension entre manque et aspiration. Le désir naît d'un manque et tend vers ce qui pourrait le combler." },
+      { terme: "Besoin", def: "Exigence naturelle et biologique (manger, boire, dormir). Limité et saturable, contrairement au désir." },
+      { terme: "Conatus", def: "Pour Spinoza, l'effort de chaque être à persévérer dans son existence. Le désir est l'essence de l'homme." },
+      { terme: "Désirs naturels vs vains", def: "Épicure : désirs naturels nécessaires (manger), naturels non nécessaires (festin), vains (immortalité, gloire)." },
+    ],
+    auteurs: [
+      { nom: "Platon", periode: "IVe s. av. J.-C.", emoji: "🏛️", idee: "Le désir est manque (mythe d'Aristophane dans le Banquet). Éros désire le beau et l'immortalité ; il peut s'élever vers le Beau en soi." },
+      { nom: "Épicure", periode: "IIIe s. av. J.-C.", emoji: "🌸", idee: "Il faut distinguer les désirs selon leur nature. Les désirs vains (gloire, richesse) sont illimités et source de malheur. Seuls les désirs naturels et nécessaires doivent être satisfaits." },
+      { nom: "Spinoza", periode: "XVIIe s.", emoji: "🔍", idee: "Le désir est l'essence de l'homme (conatus). Il ne faut pas refouler ses désirs mais les comprendre et les orienter par la raison." },
+      { nom: "Hegel", periode: "XIXe s.", emoji: "🌀", idee: "Le désir est désir de reconnaissance. L'homme désire être reconnu par un autre homme. C'est le moteur de la dialectique maître/esclave." },
+    ],
+    distinctions: [
+      { a: "Désir", b: "Besoin", desc: "Le besoin est naturel, limité et saturable. Le désir est culturel, potentiellement illimité." },
+      { a: "Désir", b: "Volonté", desc: "La volonté implique une décision consciente ; le désir peut surgir malgré nous, de façon inconsciente." },
+      { a: "Désir", b: "Bonheur", desc: "Le désir non satisfait fait souffrir ; mais sans désir, pas de vie. La sagesse est dans le choix des désirs." },
+    ],
+    sujets: ["Faut-il satisfaire tous ses désirs ?", "Le désir rend-il heureux ?", "Peut-on vivre sans désir ?", "Désirer est-ce souffrir ?"],
+    pieges: ["Ne pas réduire le désir à quelque chose de purement négatif : Spinoza et Hegel en font quelque chose de positif.", "Épicure n'est pas contre le plaisir : il est pour le plaisir éclairé par la raison.", "Ne pas oublier que le désir peut être désir de l'autre (dimension intersubjective chez Hegel)."],
+    mots: ["conatus", "manque", "Éros", "reconnaissance", "pulsion", "sublimation", "satisfaction", "frustration"],
+  },
+  {
+    id: "langage",
+    titre: "Le Langage",
+    emoji: "💬",
+    subtitle: "Le langage est le système de signes qui permet la communication et la pensée. Il définit l'humanité et questionne le rapport entre mots et réalité.",
+    definitions: [
+      { terme: "Langage", def: "Système de signes permettant de communiquer, d'exprimer des idées et de structurer la pensée." },
+      { terme: "Signe linguistique", def: "Pour Saussure : union d'un signifiant (forme sonore) et d'un signifié (concept). Le lien est arbitraire." },
+      { terme: "Parole", def: "Usage individuel et concret du langage. Chez Saussure, s'oppose à la langue (système collectif)." },
+      { terme: "Performatif", def: "Énoncé qui accomplit une action en étant prononcé (Austin). \"Je te promets\", \"Je déclare la séance ouverte.\"" },
+    ],
+    auteurs: [
+      { nom: "Aristote", periode: "IVe s. av. J.-C.", emoji: "📚", idee: "L'homme est un animal politique car il possède le logos (raison et parole). Le langage permet de distinguer le juste et l'injuste." },
+      { nom: "Saussure", periode: "XIXe–XXe s.", emoji: "🔤", idee: "La langue est un système de différences. Le signe est arbitraire (aucun lien naturel entre le mot et la chose)." },
+      { nom: "Bergson", periode: "XIXe–XXe s.", emoji: "🧠", idee: "Le langage trahit l'expérience vécue en découpant la durée en états figés. Il schématise là où la vie est flux." },
+      { nom: "Wittgenstein", periode: "XXe s.", emoji: "💡", idee: "\"Les limites de mon langage sont les limites de mon monde.\" Ce dont on ne peut parler, il faut le taire." },
+    ],
+    distinctions: [
+      { a: "Homme", b: "Animal", desc: "L'animal émet des signaux ; l'homme crée des signes arbitraires et produit un discours articulé avec du sens." },
+      { a: "Dire", b: "Penser", desc: "Le langage structure-t-il la pensée ou ne fait-il que l'exprimer ? Question du primat de la pensée ou du langage." },
+      { a: "Langue", b: "Parole", desc: "La langue est le système collectif ; la parole est l'usage individuel et créatif de ce système." },
+    ],
+    sujets: ["Peut-on penser sans langage ?", "Le langage dit-il tout ?", "Le langage est-il un outil de pouvoir ?", "Y a-t-il des limites du langage ?"],
+    pieges: ["Ne pas confondre langue et langage : le langage est universel, la langue est particulière (le français, l'anglais…).", "Éviter de penser que le langage est un simple outil transparent : il structure et peut déformer la pensée.", "Bergson ne dit pas que le langage est inutile, mais qu'il est inadapté à certaines réalités (la durée, les émotions)."],
+    mots: ["signe", "signifiant", "signifié", "arbitraire", "logos", "performatif", "discours", "communication"],
+  },
+  {
+    id: "nature",
+    titre: "La Nature",
+    emoji: "🌿",
+    subtitle: "La nature désigne ce qui existe indépendamment de l'homme. Elle questionne notre origine, notre rapport au monde naturel et la frontière entre naturel et artificiel.",
+    definitions: [
+      { terme: "Nature (sens 1)", def: "L'ensemble du monde physique et biologique, existant indépendamment de l'action humaine." },
+      { terme: "Nature humaine", def: "Ce qui serait constitutif et universel chez l'homme par-delà les cultures (existence ou non de cette nature est débattue)." },
+      { terme: "Physis", def: "Terme grec désignant la nature comme puissance d'engendrement et de croissance spontanée. S'oppose à nomos (convention)." },
+      { terme: "Culture", def: "Ensemble des productions humaines (langue, art, institutions) qui transforment et dépassent la nature brute." },
+    ],
+    auteurs: [
+      { nom: "Rousseau", periode: "XVIIIe s.", emoji: "🌿", idee: "L'homme naturel est bon. C'est la société et la propriété qui le corrompent. \"Tout dégénère entre les mains de l'homme.\"" },
+      { nom: "Descartes", periode: "XVIIe s.", emoji: "🧐", idee: "La nature est une machine que la raison peut comprendre et maîtriser. L'homme doit devenir \"maître et possesseur de la nature\"." },
+      { nom: "Aristote", periode: "IVe s. av. J.-C.", emoji: "📚", idee: "La nature a une finalité (téléologie) : tout être tend vers son accomplissement naturel. L'homme est naturellement un animal politique." },
+      { nom: "Darwin", periode: "XIXe s.", emoji: "🦎", idee: "L'homme est le produit de l'évolution naturelle par sélection naturelle. Il n'y a pas de rupture absolue entre l'homme et l'animal." },
+    ],
+    distinctions: [
+      { a: "Nature", b: "Culture", desc: "La nature est ce qui est donné ; la culture est ce que l'homme construit et transmet. La frontière est souvent floue." },
+      { a: "Naturel", b: "Normal", desc: "\"Naturel\" désigne ce qui existe sans l'homme ; \"normal\" désigne une norme sociale. Confondre les deux est un glissement idéologique." },
+      { a: "Nature", b: "Technique", desc: "La technique transforme la nature ; mais l'homme est lui-même naturel et ses techniques font partie du monde." },
+    ],
+    sujets: ["L'homme est-il naturel ?", "Faut-il suivre la nature ?", "Y a-t-il une nature humaine ?", "La culture s'oppose-t-elle à la nature ?"],
+    pieges: ["Éviter le \"sophisme naturaliste\" : ce qui est naturel n'est pas forcément bien.", "Rousseau n'invite pas à retourner à l'état sauvage : il critique la société pour mieux la réformer.", "La frontière nature/culture est plus floue qu'il n'y paraît : la culture est aussi naturelle à l'homme."],
+    mots: ["physis", "nomos", "état de nature", "bon sauvage", "écologie", "téléologie", "sélection naturelle", "culture"],
+  },
+  {
+    id: "raison",
+    titre: "La Raison",
+    emoji: "🧩",
+    subtitle: "La raison est la faculté humaine de penser, d'argumenter et de juger. Elle est au cœur du projet philosophique depuis les Grecs.",
+    definitions: [
+      { terme: "Raison", def: "Faculté humaine de penser de façon logique, d'argumenter et de distinguer le vrai du faux, le bien du mal." },
+      { terme: "Logos", def: "Terme grec désignant à la fois la raison et le discours articulé. L'homme est l'animal rationnel (Aristote)." },
+      { terme: "Rationalisme", def: "Courant philosophique faisant de la raison la source principale de la connaissance (Descartes, Leibniz, Spinoza)." },
+      { terme: "Empirisme", def: "Courant selon lequel toute connaissance vient de l'expérience sensible (Locke, Hume). S'oppose au rationalisme." },
+    ],
+    auteurs: [
+      { nom: "Descartes", periode: "XVIIe s.", emoji: "🧐", idee: "\"Le bon sens est la chose du monde la mieux partagée.\" La raison est universelle ; il faut l'utiliser avec méthode pour atteindre la vérité." },
+      { nom: "Kant", periode: "XVIIIe s.", emoji: "📐", idee: "La raison a des limites : elle ne peut connaître que les phénomènes, pas les choses en soi (noumènes). Critique de la Raison Pure." },
+      { nom: "Pascal", periode: "XVIIe s.", emoji: "✝️", idee: "\"Le cœur a ses raisons que la raison ne connaît point.\" La raison seule est insuffisante : foi et sentiment ont leur légitimité propre." },
+      { nom: "Hume", periode: "XVIIIe s.", emoji: "🌊", idee: "La raison est l'esclave des passions. Elle guide nos raisonnements mais ce sont les désirs et émotions qui motivent réellement l'action." },
+    ],
+    distinctions: [
+      { a: "Raison", b: "Passion", desc: "La raison est froide, universelle, argumentative ; la passion est individuelle, affective, irrationnelle. Mais s'opposent-elles vraiment ?" },
+      { a: "Raison", b: "Opinion", desc: "L'opinion est subjective et non justifiée ; la raison vise l'universalité et la démonstration." },
+      { a: "Raison théorique", b: "Raison pratique", desc: "Chez Kant : la raison théorique connaît le réel ; la raison pratique guide l'action morale." },
+    ],
+    sujets: ["La raison suffit-elle pour bien agir ?", "Peut-on être toujours raisonnable ?", "Y a-t-il des limites à la raison ?", "Raison et passion s'opposent-elles ?"],
+    pieges: ["Ne pas réduire la raison à la logique formelle : la raison pratique (morale) est aussi importante.", "Hume n'est pas irrationnel : il critique l'usage abusif de la raison, pas la raison elle-même.", "Kant ne dit pas que la raison est toute-puissante : il en montre les limites avec rigueur."],
+    mots: ["logos", "rationalisme", "empirisme", "critique", "logique", "argument", "passion", "entendement"],
+  },
+];
+
+// Render nav
+const navBar = document.getElementById('navBar');
+notions.forEach((n, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+  btn.textContent = n.emoji + ' ' + n.titre;
+  btn.onclick = () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.notion-section').forEach(s => s.classList.remove('visible'));
+    document.getElementById('notion-' + n.id).classList.add('visible');
+    document.getElementById('notion-' + n.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  navBar.appendChild(btn);
+});
+
+// Render cards
+const main = document.getElementById('main');
+notions.forEach((n, i) => {
+  const section = document.createElement('div');
+  section.className = 'notion-section' + (i === 0 ? ' visible' : '');
+  section.id = 'notion-' + n.id;
+
+  section.innerHTML = `
+    <div class="notion-header">
+      <h2>${n.emoji} ${n.titre.toUpperCase()}</h2>
+      <p class="subtitle">${n.subtitle}</p>
+    </div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="section" style="border-right: 1px solid var(--border);">
+          <div class="section-title"><span class="icon">📖</span> 1. Définitions essentielles</div>
+          ${n.definitions.map(d => `
+            <div class="def-item">
+              <div class="def-term">${d.terme}</div>
+              <div class="def-text">${d.def}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="section">
+          <div class="section-title"><span class="icon">👤</span> 2. Auteurs clés</div>
+          ${n.auteurs.map(a => `
+            <div class="author-card">
+              <div class="author-avatar">${a.emoji}</div>
+              <div>
+                <div class="author-name">${a.nom}</div>
+                <div class="author-period">${a.periode}</div>
+                <div class="author-quote">${a.idee}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <hr class="section-divider">
+      <div class="grid-2">
+        <div class="section" style="border-right: 1px solid var(--border);">
+          <div class="section-title"><span class="icon">⚖️</span> 3. Distinctions importantes</div>
+          ${n.distinctions.map(d => `
+            <div>
+              <div class="distinction">
+                <span class="distinction-term">${d.a}</span>
+                <span class="distinction-arrow">↔</span>
+                <span class="distinction-term">${d.b}</span>
+              </div>
+              <div class="distinction-desc">${d.desc}</div>
+            </div>
+          `).join('<br>')}
+        </div>
+        <div class="section">
+          <div class="section-title"><span class="icon">💭</span> 4. Sujets classiques du bac</div>
+          ${n.sujets.map(s => `
+            <div class="sujet">
+              <div class="sujet-icon">❓</div>
+              <div class="sujet-text">${s}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <hr class="section-divider">
+      <div class="section">
+        <div class="section-title"><span class="icon">⚠️</span> 5. Pièges à éviter</div>
+        <div class="grid-2">
+          ${n.pieges.map(p => `
+            <div class="piege">
+              <div class="piege-icon">⚠️</div>
+              <div class="piege-text">${p}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <hr class="section-divider">
+      <div class="section-title" style="padding: 12px 20px 0; margin-bottom: 0;"><span class="icon">🏷️</span> 6. Mots-clés</div>
+      <div class="keywords">
+        ${n.mots.map(m => `<span class="keyword">${m}</span>`).join('')}
+      </div>
+    </div>
+  `;
+
+  main.appendChild(section);
+});
+</script>
+</body>
+</html>
